@@ -6,7 +6,7 @@ communication. Digital Control Server is free of interface and only a CL version
 through UNIX socket is available. BananaCam has been written in C and it wrap
 gphoto2 with new functionnalities and socket control. An interface can easily
 control the Digital Control ServernaCam local/remote server by sending specific messages. This application
-is based on BananaCam developed by OliverNicolini @ Centre for Advanced Imaging. Please refer to following
+is based on BananaCam developed by OliverNicolini and Adam @ Centre for Advanced Imaging. Please refer to following
 link: https://github.com/OliverNicolini/BananaCam
 
 
