@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+  <script>
+    var exampleSocket = new WebSocket("ws://localhost:4242");
+    exampleSocket.onmessage = function (event) {
+    alert("yoyo");
+    console.log(event);
+    }
+  </script>
+
+</body>
+</html>

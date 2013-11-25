@@ -1,0 +1,107 @@
+    
+properties = [
+    ["iso", "ISO"],
+    ["whitebalance", "White Balance"],
+    ["imagequality", "Image Quality"],
+    ["f-number", "F Number"],
+    ["shutterspeed", "Shutter Speed"],
+    ["imagesize", "Image Size"]
+];
+
+property_list_camera = [];
+
+function ajax_send(url)
+{
+    
+    $.getScript(url, function(){ return false;});
+    
+}
+
+function check_properties(property_list, property)
+{
+    var i = 0;
+    
+    while (i < property_list.length)
+    {
+	if (property == property_list[i][0])
+	    return (1);
+	i++;
+    }
+    
+    return (0);
+}
+
+function is_camera_property(property, propert_list_camera)
+{
+    var i = 0;
+    
+    while (i < property_list_camera.length)
+    {
+	if (property == property_list_camera[i][0])
+	    return (1);
+	i++;
+    }
+    return (0);
+}
+
+function set_property_html(property_list, propert_list_camera)
+{
+    var i = 0;
+    
+    while (i < property_list.length)
+    {
+	if (is_camera_property(property_list[i][0], property_list_camera))
+	{
+	    var text = '<div class="span2"> <div class="dropdown"> <a class="dropdown-toggle btn btn-block" id=\"drop-' + property_list[i][0] + '" role="button" data-toggle="dropdown" href="#">' + property_list[i][1] + ' <b class="caret"></b></a><ul class="dropdown-menu" id="' + property_list[i][0] + '" role="menu" aria-labelledby="drop-' + property_list[i][0] + '"></ul></div></div>';
+
+	$("#container").append(text);
+	}
+    }
+    
+    return (0);
+}
+
+function load_config()
+{
+    var url = window.location.href;
+    var capture_href = $("#capture_button a").attr("href");
+    var final_link = url + capture_href;
+
+    $("#capture_button a").attr("href", final_link);
+
+    $.get(url + "BananaCam/?=64&get_fullconfig&getting_full_conf&null", function(data) {
+    
+    var array_info = data.split("\n");
+    var i = 0; 
+    while (i < array_info.length)
+	{
+	    var command = array_info[i].split("=>");
+	    var prop_array = new Array();
+	    var options_type = command[1].split("#");
+	    var options = options_type[1].split("|");    
+	    
+
+	    prop_array[0] = command[0];
+	    prop_array[1] = options_type[0];
+	    prop_array[2] = options;
+	    
+	    alert(prop_array);
+
+	    property_list_camera[i] = prop_array;
+	    /*
+	    if (check_properties(properties, command[0]))
+	    {
+	
+		var j = 0;
+		var balise =  "ul#" + command[0];
+		while (j < options.length)
+		{
+		    $(balise).append('<li role="presentation"><a tabindex="-1" role="menuitem" href="http://localhost/BananaCam/?=64&' + command[0] + '&setting_iso&' + options[j] + '" onclick="ajax_send(this); return false;">' + options[j] + '</a></li>');
+		    j++;
+		}
+	    }
+	    */
+	    i++;
+	}
+    });
+}
