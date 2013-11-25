@@ -1,11 +1,13 @@
-BananaCam
+Digital Control Server
 =========
 
-BananaCam is a server wich aim to control camera remotly by using a socket
-communication. BananaCam is free of interface and only a CL version controllable
+Digital Control Server is a server wich aim to control camera remotly by using a socket
+communication. Digital Control Server is free of interface and only a CL version controllable
 through UNIX socket is available. BananaCam has been written in C and it wrap
 gphoto2 with new functionnalities and socket control. An interface can easily
-control the BananaCam local/remote server by sending specific messages.
+control the Digital Control ServernaCam local/remote server by sending specific messages. This application
+is based on BananaCam developed by OliverNicolini @ Centre for Advanced Imaging. Please refer to following
+link: https://github.com/OliverNicolini/BananaCam
 
 
 
@@ -85,49 +87,33 @@ The number of argument can be NULL.
 
 ###      Preimplemented Commands
 
-
-
     The list of the preimplemented commands and theyr options are:
-
-    
 
     capture ==\> (int)numberOfShots(optional) |
     (string)pathWhereToSave(optional)
 
     Trigguer the capture and save the photos in a directory.
 
-
-
     auto_focus ==\> NULL
 
     Trigguer the autofocus if the camera is in AutoFocus mode
-
-
 
     liveview ==\> NULL
 
     Trigguer (activate/deactivate) the liveview mode sent through the data
     socket
 
-
-
     liveviewfps ==\> (int)numberOfFPS
 
     Set the number of FPS (Frame per Second) of the liveview.
-
-
 
     get_liveviewfps ==\> NULL
 
     Get the number of FPS of the liveview
 
-
-
     defaultpath ==\> (string)path
 
     Set the default path of the application where the images will be saved.
-
-
 
     get_defaultpath ==\> NULL
 
